@@ -1,0 +1,172 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>CSA2.0 Stream API Demo</title>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script></head>
+<body>
+<div id="container" style="width: 800px; height: 600px; margin: 0 auto"></div>
+<script language="JavaScript">
+$(document).ready(function() {  
+   
+
+      var StreamData=0;
+      var url = "wss://10.79.57.84:9443/csa/query/stream/demo_ds?access.token=eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.CdUBDIzHb8SQtq3Y1sCUWOvJggbY0yd-_NQJYufCOO_ONk1hMX1MZA.W7f1hEXKWm1BbRNki4wE0w.egGlKTzYQF8erVNC4TNzEJEZdzESpxwjjppMDrNI85rsjfhbM16WOL8PcF-8CMihs2q4OYKRza9Z1DDVmBXfQTjZlcYX3zZ00wBwPd3Gbwv0DqtFJjrIddLvT07_cwMFIA5kj00FtgOVn6rAhaFtubYg-QZgYtDsXfwXorAyG95IR0Mgeq9iERzVOCTn2A865ggUVxPtmgCVsv37YcdpR49nrLa91taSXiGZ4cWlRXnH9_jkgXe-MVU2xHJQRTEUJ-2aKAlqAk4H_il8_BTKYqCcuDp8u4iWz3dtMRB4CGmmS37K7VZw33NNQtJ54Ezg7RlF31ZzSxiEr4ghMiQTI-seXF_tZQFZSPzdCGS-8OXD1vqZprR5goRg6-3hCdCWymPZANrRNqHSaRDvhN-vklM7JE2PE-qE8Tmv0CGf37mHDDh2GnYkJefN-2ujGXdkFS6H84T-orANF5FfeAP9_YSrTllkr3N1atlttVEb2wE858tp3IhP2X5AsuUR2igFunkxrOEbcfCtuczdk8mkFgQTNjimo9yWqjA5Mj-YVB89kKmNViyxw_8WGWYTV24F9BJcgN_iqZwRNJFll_mO-k7Z0uqlG6AJY4HNyKPurB7Bizboh2EeKWIewlOjBrZr1qX_I_9-_R3famPl8OqC_NVH89JvkHv_ylnqinMLbQ5ljzbz3N4Ve6BUNWqlcN4gs7S_O6_WewEZX6Sw7RvayfWMAVSXDGsR4PdhtWbkx3fFL1m6IO8ATU3Z-7ZetROQmNQbHKJuuPMkKYSyRW2nkxl1Of0v9zWEdOvYWsUW3bmJ_Xi1w5hi0ofQLLQQ6GVqXLMJfoOWe-GiX_YFVEexEVTbRjQXBc4JGFX24pGiyJ_P_bPL-gxdRafhEhuR2q53_C-dSxDHS4dpE6f3F9g8PoAh71NQFa6cga4QGi7-dzRgAvXF0TIjC0I6vQhXyi-9e7KqOcSUBhUz0lfy9Y7vqTk4a-uuuAd53nv-tAYOdi--5c0jUTK33gkzET8IvV6pM3yZBBi_THqVnjXV31NrVPH-TunhWvVUxbTU1nm3tZxmoD1AOcYTlf8jpe6hoYzQDuQLptuXpT0VH5NAxEWkYa8Y-v3Ul_0V8wrNmKMUnkLJvnynN-MVGPk7AhOtUemZFIq9LcdcjF0X5roIyuZFNDfcd-U9u_x_KqVYeCpJqY0P8_WNdFdbgFVjL9RKqh_03OygxgDKF_68NFkUVVFkPhmNN06kSgHDN02c9cC-1TUcxklV2zAWM-giJU1_xGEO.a8kxqC0u24hRDj3RGafxIA"
+
+      
+         var ws=new WebSocket(url);
+         
+         ws.onmessage = function(event){
+            console.log(event.data);
+            console.log(JSON.parse(event.data).temperature);            
+            StreamData=parseFloat(JSON.parse(event.data).temperature);
+
+         }
+
+
+            // Listening on WebSocket close event
+         ws.onclose = function(){
+            console.log("WebSocket closed");
+         }
+
+
+            // For WebSocket open event
+         ws.onopen = function(event){
+            console.log("WebSocket opened");
+         }
+
+         //             // For WebSocket error event
+         ws.onerror = function(event){
+            console.log(event);
+            
+         }
+
+
+   //StreamData=Math.random();
+
+
+   var chart = {
+      type: 'spline',
+	  animation: Highcharts.svg, // don't animate in IE < IE 10.
+      marginRight: 10,
+	  events: {
+         load: function () {
+            // set up the updating of the chart each second
+            var series = this.series[0];
+            setInterval(function () {
+               var x = (new Date()).getTime(), // current time
+               y = StreamData;
+               series.addPoint([x, y], true, true);
+            }, 1000);
+         }
+      }
+   };
+   
+
+
+
+
+   var title = {
+      text: 'CSA Stream API Demo'   
+   };   
+   var xAxis = {
+      type: 'datetime',
+      tickPixelInterval: 150
+   };
+   var yAxis = {
+      title: {
+         text: 'Temperature'
+      },
+      plotLines: [{
+         value: 0,
+         width: 1,
+         color: '#808080'
+      }]
+   };
+   var tooltip = {
+      formatter: function () {
+      return '<b>' + this.series.name + '</b><br/>' +
+         Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+         Highcharts.numberFormat(this.y, 2);
+      }
+   };
+   var plotOptions = {
+      area: {
+         pointStart: 1940,
+         marker: {
+            enabled: false,
+            symbol: 'circle',
+            radius: 2,
+            states: {
+               hover: {
+                 enabled: true
+               }
+            }
+         }
+      }
+   };
+   var legend = {
+      enabled: false
+   };
+   var exporting = {
+      enabled: false
+   };
+   
+
+
+   // var series= [{
+   //    name: 'Random data',
+   //    data: (function () {
+   //       // generate an array of random data
+   //       var data = [],time = (new Date()).getTime(),i;
+   //       for (i = -19; i <= 0; i += 1) {
+   //          data.push({
+   //             x: time + i * 1000,
+   //             y: Math.random()
+   //          });
+   //       }
+   //       return data;
+   //    }())    
+   // }];     
+
+   var series= [{
+      name: 'Temperature',
+      data: (function () {
+         // generate an array of random data
+         var data = [],time = (new Date()).getTime(),i;
+         for (i = -40; i <= 0; i += 1) {
+            data.push({
+               x: time + i * 1000,
+               y: 0
+            });
+         }
+         return data;
+      }())    
+   }]; 
+
+
+
+      
+   var json = {};   
+   json.chart = chart; 
+   json.title = title;     
+   json.tooltip = tooltip;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis; 
+   json.legend = legend;  
+   json.exporting = exporting;   
+   json.series = series;
+   json.plotOptions = plotOptions;
+   
+   
+   Highcharts.setOptions({
+      global: {
+         useUTC: false
+      }
+   });
+   $('#container').highcharts(json);
+  
+});
+</script>
+</body>
+</html>
