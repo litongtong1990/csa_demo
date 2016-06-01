@@ -5,7 +5,7 @@
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script></head>
 <body>
-<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<div id="container" style="width: 800px; height: 600px; margin: 0 auto"></div>
 <script language="JavaScript">
 $(document).ready(function() {  
    
@@ -68,14 +68,19 @@ $(document).ready(function() {
 
    var title = {
       text: 'CSA Stream API Demo'   
-   };   
+   };
+
+   var subtitle = {
+         text: 'The total number of different client mac every second on floor 8'
+      }; 
+
    var xAxis = {
       type: 'datetime',
       tickPixelInterval: 150
    };
    var yAxis = {
       title: {
-         text: 'Temperature'
+         text: 'Count'
       },
       plotLines: [{
          value: 0,
@@ -149,7 +154,8 @@ $(document).ready(function() {
       
    var json = {};   
    json.chart = chart; 
-   json.title = title;     
+   json.title = title;  
+   json.subtitle = subtitle;        
    json.tooltip = tooltip;
    json.xAxis = xAxis;
    json.yAxis = yAxis; 
