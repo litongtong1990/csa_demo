@@ -5,22 +5,22 @@
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script></head>
 <body>
-<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<div id="container" style="width: 800px; height: 600px; margin: 0 auto"></div>
 <script language="JavaScript">
 $(document).ready(function() {  
    
 
       var StreamData=0;
-      var url = "wss://10.75.6.130:9443/csa/query/stream/demo?access.token=eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.m_DcR_YaUv7LruAGrL1YaPoIlfKEStMNNjulHBboteTS4eiYrzPqvA.0Md5GeZdckS1iO3akYCLHw.vCK8PJ8I6A40eyILwgqtZYxCDhNvRE09MZ73zQ0gST9QKGJF9Tt7cLDkdGbybmKPmLZk6JI2DXys2CwYw5EWNTRDbVchdS2s_1hJ61VRADbaH0iVIzRhr1d1XHk0mAeMKjWIfUz2EVKqG-sdiQawlrgSvjhMkOBX_srcVTH9rW090C-4Oco2NW3e2HAfIckk_s9GrO5GDaSbKxt0nxlmF8wpTw8CRmrueYOmVqzU6VQgsgyrj8YBAUoT1mUSCqXo1BNfpEzhRzHCFkojLdk_lMVNUapiTKYmTIbS-1wZ_lH3nW-MjNHKF-RrxmihATWfgTJLLiwCMiggJJWu9hqqQACu275omJfiDqz3fBAvdydx7rYtKTXw9Hgag-673Dm5tJeVBjqUBq1MfYRBvRrkG3ZjJEx7Fpr_IbGtAfOlDBO70s3lmF9M4ZuSvcLh39wRzmIShaoSiJwZqx2-v4wYlmSSOd3KW-eq3R0QR1slYreeIr23TQKPnxU81T001YGq2bQOgfnCsUZnJ1BECt3u0Xrh5pI6ekhl_8b6g461lSc8EemaFbrnryERZrJ-71ZTTl0pSCggI8d8pUQLZmMSjILbMYBR89Q8mbjh-S6pQWFQaF_js0sSU4uOWfWdh7sHCDJwL_REaRv5sE960ff6ZAKgcwdArL75RTCtP7ca-cYGfM_W0VZw_HBjYGsbfatqvZK0FAK6UmFq9qQjqBwpVPqz3vOo-sq7Bv7KTIl853lD200G2AmysV3u91-h32zlJ15l3cDqqC9GFZlVdCJJYBGnx1yx-9dSklRCYinLZQwlQ-5thC-Q4y4kG3yR_t_hnrbtOdrtBc1jBjL2RdpPff-WzClfVMWanoYIuH5E707vHJg_wD28Zm7ErYTmp1kTofeCHODtunJJ2OqbAjkvVfBPmcDYDNYS4ROBU0scx4xBzjYzcLyso8sneuqOebn-cPExwSD45bIZLZIitX_Dn-1WktoeJcZ6Oxzv4KzKxD2x1Ljj0oPKX-nCq5u71Ier92VdfDUZZmvD0uWU7pVZmktyHGjjXa-_I8l_oDQj_Fvu1d6f592I2B7GAZvScmNTN2lA5YPmSuPIlmHHoSbVTxYDlohVlvn944SuMHI9pwIMFcqSHiOmTjJXOPl4_kBXbYWVtgcrzNak0Vz1UoG7BJgqGHpV0Qcp9gKkfwASy3aG1wLqFYRdTRZ4eZZhtPRGHMu0jS7OBzqaGl7mu7_o2kWPYc3NZyngyprTx-xx2gMi78YmoXE4NXniZtFftwxv.R7Rf6XxvLTsvB0Jd1et84g"
+      var url = "wss://10.79.57.84:9443/csa/query/stream/demo?access.token=eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.CdUBDIzHb8SQtq3Y1sCUWOvJggbY0yd-_NQJYufCOO_ONk1hMX1MZA.W7f1hEXKWm1BbRNki4wE0w.egGlKTzYQF8erVNC4TNzEJEZdzESpxwjjppMDrNI85rsjfhbM16WOL8PcF-8CMihs2q4OYKRza9Z1DDVmBXfQTjZlcYX3zZ00wBwPd3Gbwv0DqtFJjrIddLvT07_cwMFIA5kj00FtgOVn6rAhaFtubYg-QZgYtDsXfwXorAyG95IR0Mgeq9iERzVOCTn2A865ggUVxPtmgCVsv37YcdpR49nrLa91taSXiGZ4cWlRXnH9_jkgXe-MVU2xHJQRTEUJ-2aKAlqAk4H_il8_BTKYqCcuDp8u4iWz3dtMRB4CGmmS37K7VZw33NNQtJ54Ezg7RlF31ZzSxiEr4ghMiQTI-seXF_tZQFZSPzdCGS-8OXD1vqZprR5goRg6-3hCdCWymPZANrRNqHSaRDvhN-vklM7JE2PE-qE8Tmv0CGf37mHDDh2GnYkJefN-2ujGXdkFS6H84T-orANF5FfeAP9_YSrTllkr3N1atlttVEb2wE858tp3IhP2X5AsuUR2igFunkxrOEbcfCtuczdk8mkFgQTNjimo9yWqjA5Mj-YVB89kKmNViyxw_8WGWYTV24F9BJcgN_iqZwRNJFll_mO-k7Z0uqlG6AJY4HNyKPurB7Bizboh2EeKWIewlOjBrZr1qX_I_9-_R3famPl8OqC_NVH89JvkHv_ylnqinMLbQ5ljzbz3N4Ve6BUNWqlcN4gs7S_O6_WewEZX6Sw7RvayfWMAVSXDGsR4PdhtWbkx3fFL1m6IO8ATU3Z-7ZetROQmNQbHKJuuPMkKYSyRW2nkxl1Of0v9zWEdOvYWsUW3bmJ_Xi1w5hi0ofQLLQQ6GVqXLMJfoOWe-GiX_YFVEexEVTbRjQXBc4JGFX24pGiyJ_P_bPL-gxdRafhEhuR2q53_C-dSxDHS4dpE6f3F9g8PoAh71NQFa6cga4QGi7-dzRgAvXF0TIjC0I6vQhXyi-9e7KqOcSUBhUz0lfy9Y7vqTk4a-uuuAd53nv-tAYOdi--5c0jUTK33gkzET8IvV6pM3yZBBi_THqVnjXV31NrVPH-TunhWvVUxbTU1nm3tZxmoD1AOcYTlf8jpe6hoYzQDuQLptuXpT0VH5NAxEWkYa8Y-v3Ul_0V8wrNmKMUnkLJvnynN-MVGPk7AhOtUemZFIq9LcdcjF0X5roIyuZFNDfcd-U9u_x_KqVYeCpJqY0P8_WNdFdbgFVjL9RKqh_03OygxgDKF_68NFkUVVFkPhmNN06kSgHDN02c9cC-1TUcxklV2zAWM-giJU1_xGEO.a8kxqC0u24hRDj3RGafxIA"
 
       
          var ws=new WebSocket(url);
          
          ws.onmessage = function(event){
             //console.log(event.data);
-            //console.log(JSON.parse(event.data).count);            
-            StreamData=parseInt(JSON.parse(event.data).count);
-            console.log(StreamData);
+            console.log(JSON.parse(event.data).value);            
+            StreamData=parseFloat(JSON.parse(event.data).value);
+
          }
 
 
@@ -134,7 +134,7 @@ $(document).ready(function() {
       data: (function () {
          // generate an array of random data
          var data = [],time = (new Date()).getTime(),i;
-         for (i = -19; i <= 0; i += 1) {
+         for (i = -40; i <= 0; i += 1) {
             data.push({
                x: time + i * 1000,
                y: 0
